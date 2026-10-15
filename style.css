@@ -1,0 +1,394 @@
+
+/* INTRO FRONT PAGE */
+.intro-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(
+        135deg, #e8d2b8, #f5e6d3, #d8bea0
+    );
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.intro-screen.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.intro-card {
+    width: 100%;
+    max-width: 430px;
+    padding: 40px 25px;
+    text-align: center;
+    background: #fffaf2;
+    border: 2px solid #c4a484;
+    border-radius: 25px;
+    box-shadow: 0 12px 35px #b69a7d;
+    animation: introAppear 1s ease;
+}
+
+.intro-decoration {
+    color: #a67c52;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.intro-small {
+    color: #a67c52;
+    font-size: 11px;
+    letter-spacing: 4px;
+}
+
+.intro-card h1 {
+    color: #795548;
+    font-size: 36px;
+    margin: 18px 0;
+}
+
+.intro-quote {
+    color: #8d6e63;
+    font-style: italic;
+    font-size: 14px;
+}
+
+.intro-line {
+    width: 70px;
+    height: 2px;
+    background: #c4a484;
+    margin: 25px auto;
+}
+
+.intro-description {
+    color: #795548;
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 28px;
+}
+
+.start-button {
+    padding: 14px 25px;
+    background: #795548;
+    color: #fffaf2;
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 5px 12px #d8bea0;
+}
+
+.start-button:hover {
+    background: #5c4033;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px #c4a484;
+}
+
+.intro-footer {
+    color: #a67c52;
+    font-size: 12px;
+    margin-top: 28px;
+}
+
+@keyframes introAppear {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Hide the bucket list until Start is clicked */
+body:not(.journey-started) .container {
+    visibility: hidden;
+}
+
+body.journey-started .container {
+    visibility: visible;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 25px 12px;
+    background: linear-gradient(135deg, #f5e6d3, #e8d2b8, #d8bea0);
+    font-family: Franklin Gothic Medium, Arial Narrow;
+    color: #5c4033;
+}
+
+.container {
+    max-width: 950px;
+    margin: auto;
+    padding: 25px;
+    background: #fffaf2;
+    border-radius: 25px;
+    box-shadow: 0 8px 25px #b69a7d;
+}
+
+h1 {
+    text-align: center;
+    color: #795548;
+    font-size: clamp(25px, 5vw, 38px);
+    animation: float 2s ease-in-out infinite;
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow:0px 0px 2px #8d6e63, 0px 0px 5px #867;
+}
+
+.subtitle, .footer {
+    text-align: center;
+    color: #a67c52;
+}
+
+.subtitle {
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+.bucket-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.goal-card {
+    position: relative;
+    overflow: hidden;
+    padding: 18px;
+    border: 2px solid #d2b48c;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #fffaf2, #f2e4d3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.goal-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px #c4a484;
+}
+
+.goal-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.goal-check {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+}
+
+.custom-check {
+    flex-shrink: 0;
+    width: 25px;
+    height: 25px;
+    display: grid;
+    place-items: center;
+    border: 2px solid #a67c52;
+    border-radius: 8px;
+    background: #fffaf2;
+    color: transparent;
+    transition: all 0.25s;
+}
+
+.goal-check:focus-visible + .custom-check {
+    outline: 3px solid #8d6e63;
+    outline-offset: 3px;
+}
+
+.goal-check:checked + .custom-check {
+    color: #fffaf2;
+    background: #795548;
+    border-color: #795548;
+    transform: rotate(360deg) scale(1.1);
+    box-shadow: 0 0 12px #c4a484;
+}
+
+.goal-name {
+    color: #5c4033;
+    transition: color 0.3s;
+}
+
+.photos {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.photo-slot {
+    position: relative;
+    min-width: 0;
+    height: 105px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 1.5px dashed #b89b7b;
+    border-radius: 12px;
+    background: #fffaf2;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.photo-slot:hover {
+    border-color: #795548;
+    background: #efe0cc;
+    transform: scale(1.03);
+}
+
+.photo-input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.upload-text {
+    color: #8d6e63;
+    font-size: 12px;
+    pointer-events: none;
+}
+
+.preview {
+    display: none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.has-photo .preview {
+    display: block;
+}
+
+.has-photo .upload-text {
+    display: none;
+}
+
+/* Completed goal */
+.goal-card.completed {
+    background: linear-gradient(135deg, #ead5bd, #f5e6d3);
+    border-color: #8d6e63;
+    box-shadow: 0 0 18px #c4a484;
+    animation: celebrate 0.6s ease;
+}
+
+.completed .goal-name {
+    text-decoration: line-through;
+    color: #9b8174;
+}
+
+.completed::after {
+    content: "Completed! ✨";
+    display: block;
+    margin-top: 12px;
+    text-align: center;
+    color: #795548;
+    font-weight: bold;
+    animation: pop 0.4s ease;
+}
+
+.confetti {
+    position: absolute;
+    bottom: 15px;
+    font-size: 18px;
+    pointer-events: none;
+    z-index: 3;
+    animation: burst 1.2s ease-out forwards;
+}
+
+@keyframes celebrate {
+    50% { transform: scale(1.035); }
+    100% { transform: scale(1); }
+}
+
+@keyframes pop {
+    from { opacity: 0; transform: scale(0.5); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes burst {
+    from {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translate(var(--drift), -100px) scale(1.5);
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+.footer {
+    margin-top: 30px;
+    font-weight: bold;
+    color: #795548;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    .bucket-list {
+        grid-template-columns: 1fr;
+    }
+
+    .goal-card {
+        padding: 13px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+.photo-slot .remove-photo {
+    display: none;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    z-index: 5;
+    width: 25px;
+    height: 25px;
+    border: none;
+    border-radius: 50%;
+    background: #5c4033;
+    color: #fffaf2;
+    font-size: 19px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.photo-slot.has-photo .remove-photo {
+    display: block;
+}
+
+.photo-slot.has-photo .photo-input {
+    display: none;
+}
